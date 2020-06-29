@@ -5,7 +5,7 @@
     Error box is already made so all i need to do is put text in the textNode of the error_container or clear the text if no error
 */
 function print(s){console.log(s)}
-const gh = new GitHub
+const gh = new Github(10)
 const ui = new UI
 
 const user_searchbox = document.querySelector("#search_textbox")                                // The textbox where we search for gh users
@@ -24,7 +24,7 @@ user_searchbox.addEventListener("keyup", e =>
                     ui.show_repos(data.repo_list, gh.repo_count)                                                      // show the repos of the user
                    
                     print("----------------")
-                    console.log(data.repo_list)
+                    console.log(data.profile)
                     
                     print("----------------")
 
@@ -35,7 +35,7 @@ user_searchbox.addEventListener("keyup", e =>
                     ui.clear_repos()    
                 }        
             })
-            .catch(e => console.log("ERROR MESSAGE: "+e))
+            // .catch(e => console.log("ERROR MESSAGE: "+e))
     }
     if (user_searchbox.value === ""){                                                           // CLEAR ERROR_BOX IF SEARCH EMPTY: this is so that when i delete everything, the error_box gets reset
         ui.clear_error()                

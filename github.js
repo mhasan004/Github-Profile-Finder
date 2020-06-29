@@ -1,11 +1,12 @@
 // NEED TO HIDE GH IS AND SECRET!
-class GitHub
+class Github
 {
-    constructor(){
+    constructor(repo_count = 5){
         this.client_id     = '33cf60a8781315f4d8ae'                                             
         this.client_secret = 'd78941acfdfe7024fd7fa5335984406d23888c19' 
-        this.repo_count = 5                                                    // REPO: setting repo to load 
+        this.repo_count = repo_count                                            // REPO: setting repo to load 
         this.repos_sort  = 'created: asc'                                       // REPO: sort the query
+
     }
     async get_profile(username)
     {
@@ -42,4 +43,21 @@ class GitHub
     * but here, can do it asynchronously
     * returnign two Primise objs: 
         return { profile: profileUser; profileRepo = profileRepo}
+*/
+
+
+/*  
+    GH RETURN DATA:
+        .avatar_url     - gh profile image
+        .html_url       - gh link         
+
+        .public_repos
+        .public_gists
+        .followers
+        .following
+
+        .company
+        .blog
+        .location
+        .created_at
 */

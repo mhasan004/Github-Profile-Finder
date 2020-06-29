@@ -3,31 +3,35 @@ class UI
     constructor(){
         this.profile = document.querySelector("#profile")
         this.repos = document.querySelector("#repos")
-        this.make_error_box()                                                                   // Will setr up the error box set up 
+        this.make_error_box()                                                                       // Will setr up the error box set up 
     }
-    show_profile(user)
+    show_profile(user)                                                                              // HTML for the profile info section of the page
     {
-        this.profile.innerHTML = `                                                               // HTML for the profile info section of the page
+        this.profile.innerHTML = `                                                               
             <div class="card card-body mb-3">
                 <div class="row">
                     <div class="col-md-3">
-                        <img class="img-fluid mb-2" src="${user.avatar_url}">
-                        <a href="${user.html_url}" target="_blank" class="btn btn-primary btn-block mb-4">View Profile</a>
+                        <a href="${user.html_url}" target="_blank">
+                            <img id="profile_image" class="img-fluid mb-2" src=${user.avatar_url} alt="Profile Image" >
+                            <a href="${user.html_url}" target="_blank" class="btn btn-primary btn-block mb-4">View Profile</a>
+                        </a>
                     </div>
 
                     <div class="col-md-9">
-                        <span class="badge badge-primary btn-primary">Public Repos: ${user.public_repos}</span>                 
-                        <span class="badge badge-secondary btn-primary">Public Gists: ${user.public_gists}</span>
-                        <span class="badge badge-success btn-primary">Followers: ${user.followers}</span>
-                        <span class="badge badge-info btn-primary">Following: ${user.following}</span>
-                        <br><br>
+                        <div class="profile_badges_div" >
+                            <span class="badge badge-primary btn-primary">   Public Repos: ${user.public_repos}</span>                 
+                            <span class="badge badge-secondary btn-primary"> Public Gists: ${user.public_gists}</span>
+                            <span class="badge badge-success btn-primary">   Followers: ${user.followers}</span>
+                            <span class="badge badge-info btn-primary">      Following: ${user.following}</span>
+                        </div>
                         <ul class="list-group">
-                            <li class="list-group-item">Company: ${user.company}</li>
-                            <li class="list-group-item">Website/Blog: ${user.blog}</li>
-                            <li class="list-group-item">Location: ${user.location}</li>
-                            <li class="list-group-item">Member Since: ${user.created_at}</li>
-                            <li class="list-group-item">Bio: ${user.bio}</li>
+                            <li class="list-group-item"> Company: ${user.company}</li>
+                            <li class="list-group-item"> Website/Blog: ${user.blog}</li>
+                            <li class="list-group-item"> Location: ${user.location}</li>
+                            <li class="list-group-item"> Member Since: ${user.created_at.split("T")[0]}</li>
+                            <li class="list-group-item"> Bio: ${user.bio}</li>
                         </ul>
+                        
                     </div>
                 </div>
             </div>
@@ -36,46 +40,62 @@ class UI
 
     clear_profile(){ this.profile.innerHTML = "" }
 
-    /*  REPO SHOW: each repo will be shown as a div 
-            make a div of class: "card card-body mb-2"
-            make a div of class: 'row' 
-                make two rows div columns of class: 'col-md-6'    
-                    On left: a tag link that href=repos.html_url and target='_blank" so that it opens in new tab
-                    On right: thre spans with inputs: 
-                        repo.stargazers_count,
-                        repo.watchers_count,
-                        repo.forms_count
-    */
-
-    show_repos(repo_list, repo_count){
-        this.repos.innerHTML =  `<h3 class="repo_div page-heading mb-3">Latest ${repo_count} Repositories</h3>`     // HTML for the repositories section of the page
+    show_repos(repo_list, repo_count){                                                                                   // HTML for the repositories section of the page
+        this.repos.innerHTML =  `<h3 class="repo_div page-heading mb-3">Latest ${repo_count} Repositories: </h3>`     
+        
 
         repo_list.forEach(repo =>
         {
             console.log(repo)
             this.repos.innerHTML += `
+                
                 <div class = "card card-body mb-2">
                     <div class = "row">
                         <div class = "col-md-6">
-                            <a href = ${repo.html_url}> ${repo.name} </a>
+                            <a href = ${repo.html_url} target="_blank"> ${repo.name} </a>
                         </div>
                         <div class = "col-md-6">
-        
+                            <span class="badge badge-primary btn-primary"> Watchers: ${repo.watchers} </span>
+                            <span class="badge badge-primary btn-primary"> Stars: ${repo.stargazers_count} </span>
+                            <span class="badge badge-primary btn-primary"> Forks: ${repo.forks_count} </span>
                         </div>
                     </div>
                 </div>
             `
         })
+        //makign it into two columns fail
+        // nst add_repo_card = function(repo){
+        //     if (repo===null || repo== undefined){
+        //         return ''
+        //     }
+        //     return `<div class = "card card-body mb-2">
+        //         <div class = "row">
+        //             <div class = "col-md-6">
+        //                 <a href = ${repo.html_url} target="_blank"> ${repo.name} </a>
+        //             </div>
+        //             <div class = "col-md-6">
+        //                 <span class="badge badge-primary btn-primary"> Watchers: ${repo.watchers} </span>
+        //                 <span class="badge badge-primary btn-primary"> Stars: ${repo.stargazers_count} </span>
+        //                 <span class="badge badge-primary btn-primary"> Forks: ${repo.forks_count} </span>
+        //             </div>
+        //         </div>
+        //     </div>`
+        // }
 
-        /* REPO ITEM PROPERTIES
-                .name            -> link 
-                .html_url
-
-                .forks_count
-                .stargazers_count,
-                .watchers_count,
-        */
-
+        // // repo_list.forEach(repo =>
+        // for (let i = 0; i<repo_list.length; i+2)
+        // {
+        //     this.repos.innerHTML += `
+        //         <div class="row">
+        //             <div class="col-md-6">
+        //                 ${add_repo_card(this.repos[i])}
+        //             </div>
+        //             <div class="col-md-6">
+        //                 ${add_repo_card(this.repos[i+1])}
+        //             </div>
+        //         </div>
+        //     `
+        // }
     }
 
     clear_repos(){ this.repos.innerHTML = "" }
@@ -91,8 +111,9 @@ class UI
         const error_container = document.querySelector(".error_container")
             error_container.textContent = error_message
         const add_class_list = class_name.split(' ')                                                // STYLING: GET THE bootstrap classes      
-        add_class_list.forEach((i) => error_container.classList.add(i) )                            // STYLING: Add the bootstrap classes to error alert box 
+            add_class_list.forEach((i) => error_container.classList.add(i) )                            // STYLING: Add the bootstrap classes to error alert box 
         error_container.style.display = "block"                                                     // SHOW the error box                                                                  
+        error_container.style.animation = "shake 0.5s"                                              // SHAKE Error div
     }
     clear_error(){
         const error_container = document.querySelector(".error_container")           
@@ -137,22 +158,9 @@ class UI
                 ...
               </ul>
     */
-//__________________________________________ Eleemnts And Data used _______________________________________________________________//
+//__________________________________________ Elemnts And Data used _______________________________________________________________//
 
-/*  GH user data:
-    .avatar_url     - gh profile image
-    .html_url       - gh link         
 
-    .public_repos
-    .public_gists
-    .followers
-    .following
-
-    .company
-    .blog
-    .location
-    .created_at
-*/
 /* ELEMENTS: 
     <span class="badge badge-primary"> userData </span>
     <ul class="list-group">
@@ -181,7 +189,7 @@ class UI
     .watchers_count,
 */
 
+/*_________________________________________ FEATURES _____________________________
+    * click on profile pic or button to get to user pagfe
 
-/*
-UPDATES: sort by start count, most code, etc
 */

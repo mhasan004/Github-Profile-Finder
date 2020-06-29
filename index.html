@@ -7,20 +7,20 @@
     <link rel="stylesheet"
         href="https://bootswatch.com/4/litera/bootstrap.min.css"                                    
     />                                                                                              <!-- 1) Bootswatch Litera Theme CSS -->                                                              
-    <title>GitHub Lookup</title>
+    <title>GitHub Profile Finder</title>
 </head>
 
 <body>
     <nav class="navbar navbar-dark bg-primary mb-3">                                                <!-- NAV BAR --> <!-- type: nav.navbar.navbar-dark.bg-primary.mb-3--->
         <div class="container">     
-            <a href="#" class="navbar-brand">GitHub Lookup</a>                                      <!-- Where does Nav Bar redirect to when i click on it?-->
+            <a href="#" class="navbar-brand">GitHub Profile Finder</a>                              <!-- Where does Nav Bar redirect to when i click on it?-->
         </div>
     </nav>
     
     <div class="container searchContainer">
         <div class="search card card-body">
-            <h1>Search GitHub Users</h1>
-            <p class="lead">Enter a username to fetch a user profile and repositories</p>
+            <h1>Search for GitHub Users</h1>
+            <p class="lead">Enter a username to fetch a user profile and their repositories</p>
             <input                                                                
                 type="text"
                 id="search_textbox"
@@ -33,9 +33,7 @@
         <div id="repos"></div>
     </div>
 
-    <footer class="mt-5 p-3 text-center bg-light">                          
-        GitHub Lookup
-    </footer>
+    <footer class="mt-5 p-3 text-center bg-light"> GitHub Profile Finder </footer>
 </body>
 
 <footer class="scripts_footer">                                                                     <!-- OUT ALL JS SCRITPS IN FOOTERS SO PAGE LOADS FIRST -->
@@ -46,7 +44,8 @@
 
     <script src="github.js"></script>                                                               <!-- 3) My GH API Key CLASS -->
     <script src="ui.js"></script>                                                                   <!-- 4) UI CLASS-->
-    <script src="app.js"></script>                                                                  <!-- 5) Main CLASS-->      
+    <script src="app.js"></script>                                                                  <!-- 5) Main CLASS-->     
+    <link rel="stylesheet" type="text/css" href="style.css"> 
 </footer>
 </html>
 
