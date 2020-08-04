@@ -14,11 +14,10 @@ class Github
         const URL_REPO_QUERY = `per_page=${this.repo_count}&sort=${this.repos_sort}`
 
         const profile_response = await fetch(`https://api.github.com/users/${username}?${URL_API_KEYS}`)                        // get gh profile that contains all the users info including repos
-        const profile = await profile_response.json()
-
-        const repos_response = await fetch(`https://api.github.com/users/${username}/repos?${URL_REPO_QUERY}&${URL_API_KEYS}`)  // get gh profile that contains all the users info including repos
+        const repos_response   = await fetch(`https://api.github.com/users/${username}/repos?${URL_REPO_QUERY}&${URL_API_KEYS}`)  // get gh profile that contains all the users info including repos
+        const profile   = await profile_response.json()
         const repo_list = await repos_response.json()
-       
+
         return {                                                                // ** wrap the promise in an object to return 
             profile,
             repo_list
@@ -36,12 +35,25 @@ class Github
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 //__________________________________________ NOTES ____________________________________________________________________//
 
 /* WHY Promises & async & await are better than callbacks: 
     * in callbacks, will need to make one callback, get res, than do another callback, get res
     * but here, can do it asynchronously
-    * returnign two Primise objs: 
+    * returning two Promise objs: 
         return { profile: profileUser; profileRepo = profileRepo}
 */
 
